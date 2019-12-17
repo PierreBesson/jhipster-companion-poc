@@ -1,0 +1,16 @@
+spring:
+  autoconfigure:
+    exclude:
+      # Disable consul autoconfigurations
+      - org.springframework.cloud.netflix.eureka.config.EurekaDiscoveryClientConfigServiceAutoConfiguration
+      - org.springframework.cloud.netflix.eureka.EurekaClientAutoConfiguration
+  #      - org.springframework.cloud.consul.serviceregistry.ConsulAutoServiceRegistrationAutoConfiguration
+  #      - org.springframework.cloud.consul.serviceregistry.ConsulServiceRegistryAutoConfiguration
+  cloud:
+    discovery:
+      client:
+        simple:
+          instances:
+            service1:
+              - uri: http://localhost:8081
+                instanceId: service1-0

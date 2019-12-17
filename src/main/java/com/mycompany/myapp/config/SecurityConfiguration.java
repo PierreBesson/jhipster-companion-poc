@@ -73,18 +73,18 @@ public class SecurityConfiguration {
             .disable()
         .and()
             .authorizeExchange()
-            .pathMatchers("/").permitAll()
-            .pathMatchers("/*.*").permitAll()
-            .pathMatchers("/api/register").permitAll()
-            .pathMatchers("/api/activate").permitAll()
-            .pathMatchers("/api/authenticate").permitAll()
-            .pathMatchers("/api/account/reset-password/init").permitAll()
-            .pathMatchers("/api/account/reset-password/finish").permitAll()
-            .pathMatchers("/api/**").authenticated()
-            .pathMatchers("/management/health").permitAll()
-            .pathMatchers("/management/info").permitAll()
-            .pathMatchers("/management/prometheus").permitAll()
-            .pathMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN);
+            .pathMatchers("/**").permitAll();
+            //.pathMatchers("/*.*").permitAll();
+//            .pathMatchers("/api/register").permitAll()
+//            .pathMatchers("/api/activate").permitAll()
+//            .pathMatchers("/api/authenticate").permitAll()
+//            .pathMatchers("/api/account/reset-password/init").permitAll()
+//            .pathMatchers("/api/account/reset-password/finish").permitAll()
+//            .pathMatchers("/api/**").authenticated()
+//            .pathMatchers("/management/health").permitAll()
+//            .pathMatchers("/management/info").permitAll()
+//            .pathMatchers("/management/prometheus").permitAll()
+//            .pathMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN);
         return http.build();
     }
 }
