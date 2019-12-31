@@ -16,11 +16,3 @@ spring:
           instances:
             service1:
               - uri: http://localhost:8081
-                #instanceId: service1-0
-
-    consul:
-      enabled: false
-
-eureka:
-  client:
-    enabled: false

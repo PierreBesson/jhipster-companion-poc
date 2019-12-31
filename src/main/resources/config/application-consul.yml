@@ -2,7 +2,5 @@ spring:
   cloud:
     consul:
       enabled: true
-
-eureka:
-  client:
-    enabled: false
+      discovery:
+        register: false

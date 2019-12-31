@@ -7,6 +7,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,14 +32,21 @@ public class ServiceDiscoveryResource {
     }
 
     /**
-     * GET /service-discovery/instances : Get applications instances
+     * GET /service-discovery/instances : Get all service instances
      * registered to the service discovery provider.
      */
     @GetMapping("/services/instances")
-    public ResponseEntity<Map<String, List<ServiceInstance>>> instances() {
-        List<String> services = discoveryClient.getServices();
-        Map<String, List<ServiceInstance>> instances = services.stream()
+    public ResponseEntity<Map<String, List<ServiceInstance>>> getAllServiceInstances() {
+        Map<String, List<ServiceInstance>> instances = discoveryClient.getServices().stream()
             .collect(Collectors.toMap(Function.identity(), discoveryClient::getInstances));
         return new ResponseEntity<>(instances, HttpStatus.OK);
+    }
+
+    /**
+     * GET /service/{serviceId} : Get service instances for a given service ID.
+     */
+    @GetMapping("/services/{serviceId}")
+    public ResponseEntity<List<ServiceInstance>> getAllServiceInstancesForServiceId(@PathVariable String serviceId) {
+        return new ResponseEntity<>(discoveryClient.getInstances(serviceId), HttpStatus.OK);
     }
 }

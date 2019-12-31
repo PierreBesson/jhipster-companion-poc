@@ -2,11 +2,13 @@ eureka:
   instance:
     prefer-ip-address: true
   client:
+    enabled: true
     register-with-eureka: false
     service-url:
       defaultZone: http://admin:admin@localhost:8761/eureka/
 
 spring:
-  cloud:
-    consul:
-      enabled: false
+  autoconfigure:
+    exclude:
+      - org.springframework.cloud.consul.serviceregistry.ConsulAutoServiceRegistrationAutoConfiguration
+      - org.springframework.cloud.consul.serviceregistry.ConsulServiceRegistryAutoConfiguration

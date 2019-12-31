@@ -49,42 +49,6 @@ spring:
   thymeleaf:
     cache: false
 
-  cloud:
-    gateway:
-      actuator:
-      # Sample static route
-      #      routes:
-      #        - id: app
-      #          uri: lb://eurekaservice1
-      #          predicates:
-      #            - Path=/gateway/eurekaservice1/**
-      #          filters:
-      #            - RewritePath=/gateway/eurekaservice1/(?<eurekaservice1>.*), /$\{eurekaservice1}
-      #      discovery:
-      #        locator:
-      #          enabled: true
-      #          url-expression: "'lb://gateway/'+serviceId"
-      #          predicates:
-      #            - name: Path
-      #              args:
-      #                pattern: "'/gateway/'+serviceId+'/**'"
-      metrics:
-        enabled: true
-      discovery:
-        # Docs at https://cloud.spring.io/spring-cloud-gateway/reference/html/index.html#configuring-predicates-and-filters-for-discoveryclient-routes
-        locator:
-      #          enabled: false
-      #          predicates:
-      #            - name: 'Path'
-      #              args:
-      #                pattern: "'/gateway/'+serviceId+'/**'"
-      #          filters:
-      #            - name: 'RewritePath'
-      #              args:
-      #                regexp: "'/gateway/'+serviceId+'/(?<remaining>.*)'"
-      #                replacement: "'/${remaining}'"
-      enabled: true
-
 server:
   port: 1337
 

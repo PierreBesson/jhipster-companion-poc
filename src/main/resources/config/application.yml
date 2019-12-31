@@ -102,6 +102,11 @@ spring:
     ansi:
       console-available: true
 
+  # Specific config
+  cloud:
+    consul:
+      enabled: false
+
 server:
   servlet:
     session:
@@ -153,3 +158,9 @@ jhipster:
 # ===================================================================
 
 # application:
+
+# Specific config
+
+eureka:
+  client:
+    enabled: false

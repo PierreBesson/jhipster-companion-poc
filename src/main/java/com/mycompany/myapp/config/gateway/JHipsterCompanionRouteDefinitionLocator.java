@@ -1,11 +1,10 @@
-package com.mycompany.myapp.web.rest;
+package com.mycompany.myapp.config.gateway;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.gateway.discovery.DiscoveryClientRouteDefinitionLocator;
-import org.springframework.cloud.gateway.discovery.DiscoveryLocatorProperties;
 import org.springframework.cloud.gateway.filter.FilterDefinition;
 import org.springframework.cloud.gateway.filter.factory.RewritePathGatewayFilterFactory;
 import org.springframework.cloud.gateway.handler.predicate.PathRoutePredicateFactory;
@@ -13,6 +12,8 @@ import org.springframework.cloud.gateway.handler.predicate.PredicateDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
 import reactor.core.publisher.Flux;
+
+import java.util.Optional;
 
 import static org.springframework.cloud.gateway.filter.factory.RewritePathGatewayFilterFactory.REGEXP_KEY;
 import static org.springframework.cloud.gateway.filter.factory.RewritePathGatewayFilterFactory.REPLACEMENT_KEY;
@@ -49,7 +50,7 @@ public class JHipsterCompanionRouteDefinitionLocator implements RouteDefinitionL
 
     private static RouteDefinition getRouteDefinitionForInstance(ServiceInstance instance) {
         String instance_route = String.format("%s/%s", instance.getServiceId(),
-            instance.getInstanceId()).toLowerCase();
+            Optional.ofNullable(instance.getInstanceId()).orElse(instance.getServiceId())).toLowerCase();
 
         RouteDefinition routeDefinition = new RouteDefinition();
         routeDefinition.setId(instance_route);
