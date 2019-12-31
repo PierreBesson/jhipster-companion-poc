@@ -17,8 +17,6 @@ spring:
             service1:
               - uri: http://localhost:8081
                 #instanceId: service1-0
-          local:
-            service-id:
 
     consul:
       enabled: false
